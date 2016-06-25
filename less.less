@@ -1,0 +1,35 @@
+/**----------------------------------------------------------------------------*/
+/* GENERATE FLEX BOX PARAMETERS*/
+/**----------------------------------------------------------------------------*/
+.flexBoxer(@align) {
+  .horizontal-@{align}, .vertical-@{align} {
+    display: flex;
+    justify-content: @align;
+    align-content: stretch;
+    align-items: center;
+  }
+  .horizontal-@{align} {
+    flex-direction: row;
+  }
+  .vertical-@{align} {
+    flex-direction: column;
+  }
+  .horizontal-@{align}.stretch, .vertical-@{align}.stretch {
+    align-items: stretch;
+  }
+  .horizontal-@{align}.span-1, .vertical-@{align}.span-1 {
+    flex-wrap: nowrap;
+  }
+  .horizontal-@{align}.span-1 > *, .vertical-@{align}.span-1 > * {
+    flex-grow: 1;
+  }
+}
+
+.flexBoxer(~"flex-start");
+.flexBoxer(~"flex-end");
+.flexBoxer(~"space-between");
+.flexBoxer(~"space-around");
+.flexBoxer(~"center");
+/**----------------------------------------------------------------------------*/
+/** CLOSE FLEX BOX GENERATION */
+/**----------------------------------------------------------------------------*/
