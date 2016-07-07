@@ -1,27 +1,37 @@
 /**----------------------------------------------------------------------------*/
 /* GENERATE FLEX BOX PARAMETERS*/
 /**----------------------------------------------------------------------------*/
+
 .flexBoxer(@align) {
   .horizontal-@{align}, .vertical-@{align} {
-    display: flex;
     justify-content: @align;
-    align-content: stretch;
-    align-items: center;
   }
-  .horizontal-@{align} {
+}
+
+.flexJoin(@f1,@f2,@f3,@f4,@f5) {
+  .horizontal-@{f1}, .horizontal-@{f2}, .horizontal-@{f3}, .horizontal-@{f4}, .horizontal-@{f5} {
     flex-direction: row;
   }
-  .vertical-@{align} {
+  .vertical-@{f1}, .vertical-@{f2}, .vertical-@{f3}, .vertical-@{f4}, .vertical-@{f5} {
     flex-direction: column;
   }
-  .horizontal-@{align}.stretch, .vertical-@{align}.stretch {
-    align-items: stretch;
-  }
-  .horizontal-@{align}.span-1, .vertical-@{align}.span-1 {
-    flex-wrap: nowrap;
-  }
-  .horizontal-@{align}.span-1 > *, .vertical-@{align}.span-1 > * {
-    flex-grow: 1;
+  .horizontal-@{f1}, .horizontal-@{f2}, .horizontal-@{f3}, .horizontal-@{f4}, .horizontal-@{f5},
+  .vertical-@{f1}, .vertical-@{f2}, .vertical-@{f3}, .vertical-@{f4}, .vertical-@{f5} {
+    display: flex;
+    align-content: stretch;
+    align-items: center;
+    flex-wrap: wrap;
+    &.stretch {
+      align-items: stretch;
+    }
+    &.span-1 {
+      > * {
+        flex-grow: 1;
+      }
+    }
+    &.no-wrap {
+      flex-wrap: nowrap;
+    }
   }
 }
 
@@ -30,6 +40,7 @@
 .flexBoxer(~"space-between");
 .flexBoxer(~"space-around");
 .flexBoxer(~"center");
+.flexJoin(~"flex-start", ~"flex-end", ~"space-between", ~"space-around", ~"center");
 /**----------------------------------------------------------------------------*/
 /** CLOSE FLEX BOX GENERATION */
 /**----------------------------------------------------------------------------*/
