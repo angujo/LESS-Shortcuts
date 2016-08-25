@@ -29,10 +29,19 @@
         flex-grow: 1;
       }
     }
+    .flexGrow(12);
     &.no-wrap {
       flex-wrap: nowrap;
     }
   }
+}
+
+
+.flexGrow(@iterator:1) when (@iterator > 0){
+    &:not(.span-1)>*.span-@{iterator}{
+        flex-grow:@iterator;
+    }
+    .flexGrow((@iterator - 1));
 }
 
 .flexBoxer(~"flex-start");
